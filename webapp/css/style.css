@@ -1,0 +1,19 @@
+/* Enter your custom styles here */
+
+ /* .sapMInputBaseContentWrapper{
+    height: 30px;
+} */
+
+.ArcObj_toolbar{
+    display: flex;
+    align-items: center;
+}
+
+.gridcards{
+    justify-content: space-evenly;
+    margin: 10px 0;
+}
+
+.Arcdetail{
+    margin-right: 10px;
+}

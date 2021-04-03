@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Capabilities.V1.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Alias="Capabilities" Namespace="Org.OData.Capabilities.V1"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="CatalogService" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityContainer Name="EntityContainer" m:IsDefaultEntityContainer="true">
+                <EntitySet Name="ArcObj" EntityType="CatalogService.ArcObj"/>
+                <EntitySet Name="ArchivalTables" EntityType="CatalogService.ArchivalTables"/>
+                <AssociationSet Name="ArcObj_ArchTables" Association="CatalogService.ArcObj_ArchTables">
+                    <End Role="ArcObj" EntitySet="ArcObj"/>
+                    <End Role="ArchivalTables" EntitySet="ArchivalTables"/>
+                </AssociationSet>
+            </EntityContainer>
+            <EntityType Name="ArcObj">
+                <Key>
+                    <PropertyRef Name="Object"/>
+                </Key>
+                <Property Name="Object" Type="Edm.String" Nullable="false"/>
+                <Property Name="Tot_Mem" Type="Edm.Int32"/>
+                <Property Name="Unit_tot" Type="Edm.String"/>
+                <Property Name="Main_Mem" Type="Edm.String"/>
+                <Property Name="Unit_Main" Type="Edm.String"/>
+                <Property Name="Delta_Mem" Type="Edm.String"/>
+                <Property Name="Unit_Delta" Type="Edm.String"/>
+                <Property Name="Record_count" Type="Edm.Int32"/>
+                <Property Name="package" Type="Edm.String"/>
+                <NavigationProperty Name="ArchTables" Relationship="CatalogService.ArcObj_ArchTables" FromRole="ArcObj" ToRole="ArchivalTables"/>
+            </EntityType>
+            <EntityType Name="ArchivalTables">
+                <Key>
+                    <PropertyRef Name="Object"/>
+                    <PropertyRef Name="TableName"/>
+                </Key>
+                <Property Name="Object" Type="Edm.String" Nullable="false"/>
+                <Property Name="TableName" Type="Edm.String" Nullable="false"/>
+                <Property Name="Tot_Mem" Type="Edm.Int32"/>
+                <Property Name="Unit_tot" Type="Edm.String"/>
+                <Property Name="Main_Mem" Type="Edm.String"/>
+                <Property Name="Unit_Main" Type="Edm.String"/>
+                <Property Name="Delta_Mem" Type="Edm.String"/>
+                <Property Name="Unit_Delta" Type="Edm.String"/>
+                <Property Name="Record_count" Type="Edm.Int32"/>
+                <Property Name="package" Type="Edm.String"/>
+            </EntityType>
+            <Association Name="ArcObj_ArchTables">
+                <End Role="ArcObj" Type="CatalogService.ArcObj" Multiplicity="*"/>
+                <End Role="ArchivalTables" Type="CatalogService.ArchivalTables" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="ArchivalTables">
+                        <PropertyRef Name="Object"/>
+                    </Principal>
+                    <Dependent Role="ArcObj">
+                        <PropertyRef Name="Object"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Annotations Target="CatalogService.EntityContainer/ArcObj" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.DeleteRestrictions">
+                    <Record Type="Capabilities.DeleteRestrictionsType">
+                        <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.InsertRestrictions">
+                    <Record Type="Capabilities.InsertRestrictionsType">
+                        <PropertyValue Property="Insertable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.UpdateRestrictions">
+                    <Record Type="Capabilities.UpdateRestrictionsType">
+                        <PropertyValue Property="Updatable" Bool="false"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="CatalogService.EntityContainer/ArchivalTables" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.DeleteRestrictions">
+                    <Record Type="Capabilities.DeleteRestrictionsType">
+                        <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.InsertRestrictions">
+                    <Record Type="Capabilities.InsertRestrictionsType">
+                        <PropertyValue Property="Insertable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.UpdateRestrictions">
+                    <Record Type="Capabilities.UpdateRestrictionsType">
+                        <PropertyValue Property="Updatable" Bool="false"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

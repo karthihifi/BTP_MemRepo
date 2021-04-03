@@ -1,0 +1,58 @@
+{
+  "sap.app": {
+    "id": "my.new.card",
+    "type": "card",
+    "dataSources": {
+      "products": {
+        "uri": "/v2/catalog/",
+        "type": "OData"
+      }
+    },
+    "applicationVersion": {
+      "version": "1.0.0"
+    }
+  },
+  "sap.card": {
+    "configuration": {
+      "parameters": {
+        "to": {
+          "value": "{{parameters.TODAY_ISO}}",
+          "type": "date",
+          "label": "To",
+          "description": "End date for the searched period."
+        }
+      }
+    },
+    "data": {
+      "request": {
+        "url": "{{dataSources.products.uri}}/ArcObj",
+        "parameters": {
+          "$orderby": "Tot_Mem desc"
+        }
+      }
+    },
+    "type": "List",
+    "header": {
+      "title": "Top 5 Archival Objects",
+      "subTitle": "Date : {{parameters.to}}"
+    },
+    "content": {
+      "data": {
+        "path": "/d/results"
+      },
+      "item": {
+        "title": {
+          "value": "{Object}"
+        },
+        "description": {
+          "value": "Total Memory : {Tot_Mem} KB"
+        },
+        "info": {
+          "value": "{Record_count}",
+          "state": "{= ${Record_count} > 4 ? 'Success' : 'Warning' }"
+        }
+      },
+      "maxItems": 5
+    }
+  }
+}

@@ -1,0 +1,18 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+  <ViewSettingsDialog confirm="onConfirm">
+    <sortItems>
+      <ViewSettingsItem selected="true" key="Object" text="Archival Object"/>
+      <ViewSettingsItem key="Tot_Mem" text="Total Memory"/>
+      <ViewSettingsItem key="Main_Mem" text="Main Memory"/>
+      <ViewSettingsItem key="Delta_Mem" text="Delta Memory"/>
+      <ViewSettingsItem key="Tot_Mem" text="Record Count"/>
+    </sortItems>
+    <filterItems>
+      <ViewSettingsFilterItem key="Main_Mem" text="Man Menory" multiSelect="false">
+        <items>
+          <ViewSettingsItem key="Main_Mem___GT___1000___X" text="Greater than 1000"/>
+        </items>
+      </ViewSettingsFilterItem>
+    </filterItems>
+  </ViewSettingsDialog>
+</core:FragmentDefinition>

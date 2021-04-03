@@ -1,0 +1,72 @@
+{
+  "sap.app": {
+    "id": "my.new.card",
+    "type": "card",
+    "dataSources": {
+      "products": {
+        "uri": "/v2/catalog/",
+        "type": "OData"
+      }
+    },
+    "applicationVersion": {
+      "version": "1.0.0"
+    }
+  },
+  "sap.card": {
+    "data": {
+      "request": {
+        "url": "{{dataSources.products.uri}}/ArcObj",
+        "parameters": {
+          "$orderby": "Tot_Mem desc",
+          "$top": 5
+        }
+      }
+    },
+    "type": "Analytical",
+    "header": {
+      "title": "Top 5 Archival Objects",
+      "subTitle": "New sales orders"
+    },
+    "content": {
+      "chartType": "StackedColumn",
+      "legend": {
+        "visible": true,
+        "position": "Top",
+        "alignment": "Center"
+      },
+      "plotArea": {
+        "dataLabel": {
+          "visible": true,
+          "showTotal": true
+        }
+      },
+      "title": {
+        "text": "Donut chart",
+        "visible": false,
+        "alignment": "Left"
+      },
+      "measureAxis": "valueAxis",
+      "dimensionAxis": "categoryAxis",
+      "data": {
+        "path": "/d/results"
+      },
+      "dimensions": [
+        {
+          "label": "Archival Object",
+          "value": "{Object}"
+        }
+      ],
+      "measures": [
+        {
+          "label": "Main Memory",
+          "value": "{Main_Mem}"
+        },
+           {
+          "label": "Delta Memory",
+          "value": "{Delta_Mem}"
+        }
+      ],
+      "maxItems": 5
+    }
+  }
+}

@@ -1,0 +1,26 @@
+<mvc:View xmlns:w="sap.ui.integration.widgets" 	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+    xmlns:grid="sap.ui.layout.cssgrid"
+	xmlns:mvc="sap.ui.core.mvc">
+  
+  	<grid:CSSGrid
+			id="grid1"
+			gridAutoFlow="Row"
+			gridTemplateColumns="repeat(2, minmax(300px,400px))"
+			gridTemplateRows="repeat(2, 400px)"
+			gridAutoRows="2rem"
+			gridGap="1rem 0.5rem"
+            class = "gridcards">
+  	<w:Card manifest="./Analyticalcard.json">
+					
+					</w:Card>
+                    <w:Card manifest="./BarChart.json">
+					
+					</w:Card>
+                    	</grid:CSSGrid>
+	<!-- <w:Card manifest="./Analyticalcard.json">
+    <w:Card />
+    <w:Card manifest="./BarChart.json">
+    <w:Card /> -->
+
+</mvc:View>
