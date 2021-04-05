@@ -1,10 +1,4 @@
-<mvc:View
-    controllerName="memmanagnew.controller.View1"
-    xmlns:mvc="sap.ui.core.mvc"
-    displayBlock="true"
-    xmlns="sap.m"
-    xmlns:tnt="sap.tnt"
->
+<mvc:View controllerName="memmanagnew.controller.View1" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m" xmlns:tnt="sap.tnt">
 	<Shell id="shell">
 		<App id="app">
 			<!-- <pages>
@@ -12,114 +6,70 @@
 					<content />
 				</Page>
 			</pages> -->
-            <!-- <pages>
+			<!-- <pages>
             <Page id="page" title="{i18n>title}">
             <content> -->
-            	<tnt:ToolPage id="toolPage">
-		<tnt:header>
-			<tnt:ToolHeader>
-				<Button
-					id="sideNavigationToggleButton"
-					icon="sap-icon://menu2"
-					type="Transparent"
-					press=".onSideNavButtonPress">
-					<layoutData>
-						<OverflowToolbarLayoutData priority="NeverOverflow" />
-					</layoutData>
-				</Button>
-                <tnt:ToolHeaderUtilitySeparator />
-                	<ToolbarSpacer>
-					<layoutData>
-						<OverflowToolbarLayoutData priority="NeverOverflow" minWidth="20px" />
-					</layoutData>
-				</ToolbarSpacer>
-				<Button id = "desigdocu" text="Design Documents" type="Transparent" press=".edupdf">
-					<layoutData>
-						<OverflowToolbarLayoutData priority="Low" />
-					</layoutData>
-				</Button>
-				<Button text="About us" type="Transparent">
-					<layoutData>
-						<OverflowToolbarLayoutData priority="Low" />
-					</layoutData>
-				</Button>
-                	</tnt:ToolHeader>
-		</tnt:header>
-        <tnt:sideContent>
-			<tnt:SideNavigation
-				expanded="true"
-				selectedKey="ArcObj_page"
-				itemSelect=".onItemSelect">
-				<tnt:NavigationList >
-					<!-- <tnt:NavigationListItem
+			<tnt:ToolPage id="toolPage">
+				<tnt:header>
+					<tnt:ToolHeader>
+						<Button id="sideNavigationToggleButton" icon="sap-icon://menu2" type="Transparent" press=".onSideNavButtonPress">
+							<layoutData>
+								<OverflowToolbarLayoutData priority="NeverOverflow" />
+							</layoutData>
+						</Button>
+						<tnt:ToolHeaderUtilitySeparator />
+						<ToolbarSpacer>
+							<layoutData>
+								<OverflowToolbarLayoutData priority="NeverOverflow" minWidth="20px" />
+							</layoutData>
+						</ToolbarSpacer>
+						<Button id="desigdocu" text="Design Documents" type="Transparent" press=".edupdf">
+							<layoutData>
+								<OverflowToolbarLayoutData priority="Low" />
+							</layoutData>
+						</Button>
+						<Button text="About us" type="Transparent">
+							<layoutData>
+								<OverflowToolbarLayoutData priority="Low" />
+							</layoutData>
+						</Button>
+					</tnt:ToolHeader>
+				</tnt:header>
+				<tnt:sideContent>
+					<tnt:SideNavigation expanded="true" selectedKey="ArcObj_page" itemSelect=".onItemSelect">
+						<tnt:NavigationList>
+							<!-- <tnt:NavigationListItem
 						text="Archival Objects"
 						icon="{icon}"
 						enabled="true"
 						expanded="false"
 						key="ArcObj_page"> -->
-						<tnt:NavigationListItem
-								text="Archival Objects"
-						icon="{icon}"
-						enabled="true"
-						expanded="false"
-						key="ArcObj_page" />
-                        	<tnt:NavigationListItem
-								text="Archival Tables"
-						icon="{icon}"
-						enabled="true"
-						expanded="false"
-						key="ArcTables" />
-                        	<tnt:NavigationListItem
-								text="Data Analysis"
-						icon="{icon}"
-						enabled="true"
-						expanded="false"
-						key="ArcObj_analysis" />
-                        	<tnt:NavigationListItem
-								text="Archival Logs"
-						icon="{icon}"
-						enabled="true"
-						expanded="false"
-						key="ArcObj_logs" />
-                             	<tnt:NavigationListItem
-								text="Quick View"
-						icon="{icon}"
-						enabled="true"
-						expanded="false"
-						key="Card_page" />
-					<!-- </tnt:NavigationListItem> -->
-				</tnt:NavigationList>
-			</tnt:SideNavigation>
-		</tnt:sideContent>
-        <tnt:mainContents>
-			<NavContainer id="pageContainer" initialPage="ArcObj_page">
-				<pages>
-					<ScrollContainer
-						id="ArcObj_page"
-						horizontal="false"
-						vertical="true"
-						height="100%">
-						<mvc:XMLView viewName="memmanagnew.view.ArchObj"/>
-					</ScrollContainer>
-                    	<ScrollContainer
-						id="ArcTables"
-						horizontal="false"
-						vertical="true"
-						height="100%">
-						<mvc:XMLView viewName="memmanagnew.view.ArchTables"/>
-					</ScrollContainer>
-                    	<ScrollContainer
-						id="Card_page"
-						horizontal="false"
-						vertical="true"
-						height="100%">
-						<mvc:XMLView viewName="memmanagnew.view.Overview"/>
-                        </ScrollContainer>
-                    		</pages>
-			</NavContainer>
-		</tnt:mainContents>
-                </tnt:ToolPage>
-                <!-- </content>
+							<tnt:NavigationListItem text="Archival Objects" icon="{icon}" enabled="true" expanded="false" key="ArcObj_page" />
+							<tnt:NavigationListItem text="Archival Tables" icon="{icon}" enabled="true" expanded="false" key="ArcTables" />
+							<tnt:NavigationListItem text="Data Analysis" icon="{icon}" enabled="true" expanded="false" key="ArcObj_analysis" />
+							<tnt:NavigationListItem text="Archival Logs" icon="{icon}" enabled="true" expanded="false" key="ArcObj_logs" />
+							<tnt:NavigationListItem text="Quick View" icon="{icon}" enabled="true" expanded="false" key="Card_page" />
+							<!-- </tnt:NavigationListItem> -->
+						</tnt:NavigationList>
+					</tnt:SideNavigation>
+				</tnt:sideContent>
+				<tnt:mainContents>
+					<NavContainer id="pageContainer" initialPage="ArcObj_page">
+						<pages>
+							<ScrollContainer id="ArcObj_page" horizontal="false" vertical="true" height="100%">
+								<mvc:XMLView viewName="memmanagnew.view.ArchObj" />
+							</ScrollContainer>
+							<ScrollContainer id="ArcTables" horizontal="false" vertical="true" height="100%">
+								<mvc:XMLView viewName="memmanagnew.view.ArchTables" />
+							</ScrollContainer>
+							<ScrollContainer id="Card_page" horizontal="false" vertical="true" height="100%">
+								<mvc:XMLView viewName="memmanagnew.view.Overview" />
+							</ScrollContainer>
+						</pages>
+					</NavContainer>
+				</tnt:mainContents>
+			</tnt:ToolPage>
+			<!-- </content>
                 </Page>
                 </pages> -->
 		</App>

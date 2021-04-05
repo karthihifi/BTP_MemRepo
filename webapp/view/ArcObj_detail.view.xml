@@ -1,123 +1,94 @@
-<mvc:View
-	xmlns="sap.m"
-     controllerName="memmanagnew.controller.ArcObj_detail"
-       xmlns:viz="sap.viz.ui5.controls"
-     xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
-    xmlns:viz.data="sap.viz.ui5.data"
-    	xmlns:grid="sap.ui.layout.cssgrid"
-        	xmlns:f="sap.ui.layout.form"
-        	xmlns:core="sap.ui.core"
-	xmlns:mvc="sap.ui.core.mvc">
-    <Page
-		title="Detail Page"
-		showNavButton="true"
-		navButtonPress="onNavBack">
-	<!-- <VBox class="sapUiSmallMargin"> -->
-    	<grid:CSSGrid
-			id="grid1"
-			gridTemplateColumns="50% 50%"
-			gridTemplateRows="40% 60%"
-			gridGap="1rem">
-		 <viz:VizFrame id="idVizFrame" uiConfig="{applicationSet:'fiori'}"
-         vizProperties="{plotArea: { drawingEffect: 'glossy'}, title:{ text:'Data analysis through Reports'},dataLabel:{visible:true,showTotal:true}}"
-                 vizType='donut' height="350px">
-                <viz:dataset>
-                    <viz.data:FlattenedDataset data="{/ArchivalTables}">
-                        <viz.data:dimensions>
-                            <viz.data:DimensionDefinition name="TableName"
-                                value="{TableName}" />
-                        </viz.data:dimensions>
-                        <viz.data:measures>
-                            <viz.data:MeasureDefinition name="Tot_Mem"
-                                value="{Tot_Mem}" />
-                        </viz.data:measures>
-                    </viz.data:FlattenedDataset>
-                </viz:dataset>
+<mvc:View xmlns="sap.m" controllerName="memmanagnew.controller.ArcObj_detail" xmlns:viz="sap.viz.ui5.controls" xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds" xmlns:viz.data="sap.viz.ui5.data" xmlns:grid="sap.ui.layout.cssgrid" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:chart="sap.suite.ui.commons">
+	<Page title="Archival Object" showNavButton="true" navButtonPress="onNavBack">
+		<!-- <VBox class="sapUiSmallMargin"> -->
+		<grid:CSSGrid id="grid1" class="ArcObj_detail" gridTemplateColumns="50% 50%" gridTemplateRows="40% 60%" gridGap="1rem">
+			<!-- <chart:ChartContainer id="chartContainer" showFullScreen="true" showPersonalization="false" autoAdjustHeight="false" title="Revenue">
+				<chart:content>
+					<chart:ChartContainerContent>
+						<chart:content> -->
+			<VBox class="ArcObj_detail--viz">
+				<viz:VizFrame id="idVizFrame" uiConfig="{applicationSet:'fiori'}" vizProperties="{plotArea: { drawingEffect: 'glossy'}, title:{ text:'Data analysis'},dataLabel:{visible:true,showTotal:true}}" vizType='donut' height="350px">
+					<viz:dataset>
+						<viz.data:FlattenedDataset data="{/ArchivalTables}">
+							<viz.data:dimensions>
+								<viz.data:DimensionDefinition name="TableName" value="{TableName}" />
+							</viz.data:dimensions>
+							<viz.data:measures>
+								<viz.data:MeasureDefinition name="Tot_Mem" value="{Tot_Mem}" />
+							</viz.data:measures>
+						</viz.data:FlattenedDataset>
+					</viz:dataset>
 
-                <viz:feeds>
-                    <viz.feeds:FeedItem uid="size" type="Measure"
-                        values="Tot_Mem" />
-                    <viz.feeds:FeedItem uid="color" type="Dimension"
-                        values="TableName" />
-                </viz:feeds>
-                
-            </viz:VizFrame>
-	<!-- </VBox> -->
-<ScrollContainer
-						horizontal="false"
-						vertical="true"
-						height="350px">
-    <Table id="idArcdetail"
-		inset="false"
-        growing="true"
-        growingThreshold="5"
-        class = "Arcdetail"
-        items="{/ArchivalTables}">
-        	<headerToolbar>
+					<viz:feeds>
+						<viz.feeds:FeedItem uid="size" type="Measure" values="Tot_Mem" />
+						<viz.feeds:FeedItem uid="color" type="Dimension" values="TableName" />
+					</viz:feeds>
+
+				</viz:VizFrame>
+			</VBox>
+			<!-- </chart:content>
+					</chart:ChartContainerContent>
+				</chart:content>
+			 </chart:ChartContainer> -->
+			<!-- </VBox> -->
+			<ScrollContainer horizontal="false" vertical="true" class="ArcObj_detail--tbl">
+				<layoutData>
+					<grid:GridItemLayoutData gridColumn="2 / 3" />
+				</layoutData>
+				<Table id="idArcdetail" inset="false" growing="true" growingThreshold="5" class="Arcdetail" items="{/ArchivalTables}">
+					<headerToolbar>
+						<OverflowToolbar class = "ArcObj_detail--hdr">
+							<content>
+								<!-- <ToolbarSpacer /> -->
+								<Title text="Table Details" level="H2" hAlign="center" />
+
+							</content>
+						</OverflowToolbar>
+					</headerToolbar>
+					<columns>
+						<Column width="12em">
+							<Text text="Table" />
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true">
+							<Text text="Total Memory" />
+						</Column>
+						<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
+							<Text text="Main Memory" />
+						</Column>
+						<Column minScreenWidth="Desktop" demandPopin="true" hAlign="End">
+							<Text text="Delta Memory" />
+						</Column>
+
+						<Column hAlign="Center">
+							<Text text="Records Count" />
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem type="Active">
+							<cells>
+								<ObjectIdentifier title="{TableName}" text="Package : {package}" />
+								<ObjectNumber number="{Tot_Mem}" unit="{Unit_tot}" />
+								<ObjectNumber number="{Main_Mem}" unit="{Unit_Main}" />
+								<ObjectNumber number="{Delta_Mem}" unit="{Unit_Delta}" />
+								<ObjectNumber number="{Record_count}" />
+
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</ScrollContainer>
+			<VBox class="ArcObj_detail--timeline">
+				<layoutData>
+					<grid:GridItemLayoutData gridRow="2 / 3" gridColumn="1 / 3" />
+				</layoutData>
+				<mvc:XMLView viewName="memmanagnew.view.ArcObjForm" />
+			</VBox>
+		</grid:CSSGrid>
+		<footer>
 			<OverflowToolbar>
-				<content>
-					<Title text="Products" level="H2"/>
-					<ToolbarSpacer />
-                    	</content>
-                    	</OverflowToolbar>
-		</headerToolbar>
-        	<columns>
-			<Column
-				width="12em">
-				<Text text="Table" />
-			</Column>
-			<Column
-				minScreenWidth="Tablet"
-				demandPopin="true">
-				<Text text="Total Memory" />
-			</Column>
-            	<Column
-				minScreenWidth="Desktop"
-				demandPopin="true"
-				hAlign="Center">
-				<Text text="Main Memory" />
-			</Column>
-			<Column
-				minScreenWidth="Desktop"
-				demandPopin="true"
-				hAlign="End">
-				<Text text="Delta Memory" />
-			</Column>
-		
-			<Column
-				hAlign="Center">
-				<Text text="Records Count" />
-			</Column>
-		</columns>
-        <items>
-			<ColumnListItem type="Active">
-				<cells>
-					<ObjectIdentifier
-						title="{TableName}"
-						text="Package : {package}"/>
-					<ObjectNumber
-						number="{Tot_Mem}"
-                        unit="{Unit_tot}"  />
-					<ObjectNumber 
-                    number="{Main_Mem}"
-                        unit="{Unit_Main}"  />
-                        	<ObjectNumber 
-                    number="{Delta_Mem}"
-                        unit="{Unit_Delta}"  />
-                         	<ObjectNumber 
-                    number="{Record_count}"  />
-					
-				</cells>
-			</ColumnListItem>
-		</items>
-        </Table>
-        </ScrollContainer>
-        	</grid:CSSGrid>
-            <footer>
-			<OverflowToolbar>
-				<ToolbarSpacer/>
-				<Button type="Accept" text="Archive Data"/>
+				<ToolbarSpacer />
+				<Button type="Accept" text="Archive Data" />
 			</OverflowToolbar>
 		</footer>
-    </Page>
+	</Page>
 </mvc:View>

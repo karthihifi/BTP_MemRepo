@@ -1,101 +1,62 @@
-<mvc:View
-	xmlns="sap.m"
-	xmlns:core="sap.ui.core"
-	xmlns:mvc="sap.ui.core.mvc"
-    xmlns:l="sap.ui.layout"
-	 controllerName="memmanagnew.controller.View1"
-	height="100%">
+<mvc:View xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" controllerName="memmanagnew.controller.View1" height="100%">
 
-		
-	<l:HorizontalLayout class="sapUiContentPadding ArcObj_toolbar" >
-<Label text="Archival Object" width="100%" labelFor="multiInput"/>
-	<MultiInput width="100%"  class = "Multi_Input"
-			id="multiInput"
-			suggestionItems="{
+
+	<l:HorizontalLayout class="sapUiContentPadding ArcObj_toolbar">
+		<Label text="Archival Object" width="100%" labelFor="multiInput" />
+		<MultiInput width="100%" class="Multi_Input" id="multiInput" suggestionItems="{
 				path: '/ArcObj',
 				sorter: { path: 'Object' }
-			}"
-			valueHelpRequest="handleValueHelp">
+			}" valueHelpRequest="handleValueHelp">
 			<core:Item key="{Object}" />
 		</MultiInput>
-        	<Button
-					id="BadgedButton"
-					class="sapUiTinyMarginBeginEnd"
-					icon="sap-icon://search"
-					type="Emphasized"
-					text="Go">
-				</Button>
-        </l:HorizontalLayout>
-<Table id="idArcObjTable"
-		inset="false"
-        itemPress="onItempress"
-        growing="true"
-        growingThreshold="12"
-		items="{
+		<Button id="BadgedButton" class="sapUiTinyMarginBeginEnd" icon="sap-icon://search" type="Emphasized" text="Go"></Button>
+	</l:HorizontalLayout>
+	<Table id="idArcObjTable" inset="false" itemPress="onItempress" growing="true" growingThreshold="12" items="{
 			path: '/ArcObj',
 			sorter: {
 				path: 'Tot_Mem',
                 descending: true
 			}
 		}">
-        	<headerToolbar>
+		<headerToolbar>
 			<OverflowToolbar>
 				<content>
-					<Title text="Archival Object" level="H2"/>
+					<Title text="Archival Object" level="H2" />
 					<ToolbarSpacer />
-                     <Button press="onTableSettings" icon="sap-icon://action-settings" tooltip="Settings"/>
-                    	</content>
-                    	</OverflowToolbar>
+					<Button press="onTableSettings" icon="sap-icon://action-settings" tooltip="Settings" />
+				</content>
+			</OverflowToolbar>
 		</headerToolbar>
-        	<columns>
-			<Column
-				width="12em">
+		<columns>
+			<Column width="12em">
 				<Text text="Archival Object" />
 			</Column>
-			<Column
-				minScreenWidth="Tablet"
-				demandPopin="true">
+			<Column minScreenWidth="Tablet" demandPopin="true">
 				<Text text="Total Memory" />
 			</Column>
-            	<Column
-				minScreenWidth="Desktop"
-				demandPopin="true"
-				hAlign="Center">
+			<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
 				<Text text="Main Memory" />
 			</Column>
-			<Column
-				minScreenWidth="Desktop"
-				demandPopin="true"
-				hAlign="End">
+			<Column minScreenWidth="Desktop" demandPopin="true" hAlign="End">
 				<Text text="Delta Memory" />
 			</Column>
-		
-			<Column
-				hAlign="End">
+
+			<Column hAlign="End">
 				<Text text="Records Count" />
 			</Column>
 		</columns>
-        <items>
+		<items>
 			<ColumnListItem type="Navigation" press="handleLineItemPress">
 				<cells>
-					<ObjectIdentifier
-						title="{Object}"
-						text="Package : {package}"/>
-					<ObjectNumber
-						number="{Tot_Mem}"
-                        unit="{Unit_tot}"  />
-					<ObjectNumber 
-                    number="{Main_Mem}"
-                        unit="{Unit_Main}"  />
-                        	<ObjectNumber 
-                    number="{Delta_Mem}"
-                        unit="{Unit_Delta}"  />
-                         	<ObjectNumber 
-                    number="{Record_count}"  />
-					
+					<ObjectIdentifier title="{Object}" text="Package : {package}" />
+					<ObjectNumber number="{Tot_Mem}" unit="{Unit_tot}" />
+					<ObjectNumber number="{Main_Mem}" unit="{Unit_Main}" />
+					<ObjectNumber number="{Delta_Mem}" unit="{Unit_Delta}" />
+					<ObjectNumber number="{Record_count}" />
+
 				</cells>
 			</ColumnListItem>
 		</items>
-        </Table>
-        
+	</Table>
+
 </mvc:View>
